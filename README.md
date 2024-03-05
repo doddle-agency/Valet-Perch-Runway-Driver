@@ -1,7 +1,7 @@
 # Valet 4.6.1, Perch Runway Driver
 Perch Runway Driver for Laravel Valet 4.6.1
 
-## Working in progress - Does not work
+## Work in progress - Does not work
 Hi 👋, I'd welcome help getting this to work, the core of the issue appears to be with lines 56 through to 73. Resulting in assets returning a 404 even though the paths are correct.
 
 ## Testing on
