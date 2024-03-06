@@ -6,11 +6,10 @@ use Valet\Drivers\ValetDriver;
 
 class PerchRunwayValetDriver extends ValetDriver
 {
-    // Array of possible folders for Perch Runway. Change as needed.
     private $folders = ['admin', 'build', 'control', 'perch', 'public', 'site_admin'];
     
-    // Configuration variable for the static files path. Change as needed.
-    private const STATIC_FILES_PATH = '/dist/';
+    // Array of possible static files paths
+    private $staticFilesPaths = ['/dist/', '/assets/'];
 
     /**
      * Determine if the driver serves the request.
@@ -66,11 +65,13 @@ class PerchRunwayValetDriver extends ValetDriver
      */
     public function isStaticFile(string $sitePath, string $siteName, string $uri)
     {
-        // Check if the URI starts with the static files path
-        if (strpos($uri, self::STATIC_FILES_PATH) === 0) {
-            $staticFilePath = $sitePath . $uri;
-            if (is_file($staticFilePath)) {
-                return $staticFilePath;
+        foreach ($this->staticFilesPaths as $path) {
+            // Check if the URI starts with the static files path
+            if (strpos($uri, $path) === 0) {
+                $staticFilePath = $sitePath . $uri;
+                if (is_file($staticFilePath)) {
+                    return $staticFilePath;
+                }
             }
         }
 
