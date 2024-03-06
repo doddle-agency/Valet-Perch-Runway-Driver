@@ -1,34 +1,18 @@
-# Valet 4.6.1, Perch Runway Driver
-Perch Runway Driver for Laravel Valet 4.6.1
+# Perch Runway Driver for Laravel Valet 4
+Perch Runway Driver for Laravel Valet 4. Tested on Valet 4.6.1.
 
-## Work in progress - Does not work
-Hi 👋, I'd welcome help getting this to work, the core of the issue appears to be with lines 56 through to 73. Resulting in assets returning a 404 even though the paths are correct.
+## Set up
+1. Change parameters on line 10 to suit your setup
+2. Change the location of your static assets, set as `'/dist'` by default
 
-## Testing on
+## Tested on
 - [Perch Runway 3.2](https://docs.grabaperch.com/runway/getting-started/installing/rewrites/)
 - [Laravel Valet 4.6.1](https://laravel.com/docs/10.x/valet)
 - PHP 8.0.30
 
 ## Assumptions
-You have Laravel Valet install and running.
+You have Laravel Valet installed and running with your site folder linked or parked.
 
 ## Installation
 1. Copy `PerchRunwayValetDriver.php` into `{user}/.config/valet/drivers` folder
 2. Restart valet `valet restart`
-3. As per Perch Doc's, add Nginx rules (may not be necessary)
-```
-    # Match just the homepage
-    location = / {
-        try_files $uri @runway;
-    }
-
-    # Match any other request
-    location / {
-        try_files $uri $uri/ @runway;
-    }
-
-    # Perch Runway
-    location @runway {
-        rewrite ^ /perch/core/runway/start.php last;
-    }
-```
